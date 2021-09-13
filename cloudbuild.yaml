@@ -16,15 +16,15 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [worker]
     entrypoint : gcloud
-    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-worker:latest', '--region', 'europe-west1']
+    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-worker:latest', '--region', 'europe-west1', 'allow-unauthenticated']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [vote]
     entrypoint : gcloud
-    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-vote:latest', '--region', 'europe-west1', '--port', '80']
+    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-vote:latest', '--region', 'europe-west1', '--port', '80', 'allow-unauthenticated']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [result]
     entrypoint : gcloud
-    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-result:latest', '--region', 'europe-west1', '--port', '4000']
+    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-result:latest', '--region', 'europe-west1', '--port', '4000', 'allow-unauthenticated']
 
 
 images: [gcr.io/projet-group-a/mick-vote:latest,gcr.io/projet-group-a/mick-worker:latest,gcr.io/projet-group-a/mick-result:latest,gcr.io/projet-group-a/mick-redis:latest,gcr.io/projet-group-a/mick-postgres:latest]
