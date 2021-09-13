@@ -20,11 +20,11 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [vote]
     entrypoint : gcloud
-    args : ['run', 'deploy', 'vote-mick-tp', '--image', 'gcr.io/projet-group-a/mick-vote:latest', '--region', 'europe-west1', '--port', '80', '--allow-unauthenticated']
+    args : ['run', 'deploy', 'vote-mick-tp', '--image', 'gcr.io/projet-group-a/mick-vote:latest', '--region', 'europe-west1', '--port', '80', '--allow-unauthenticated', '--set-env-vars','SERVER_REDIS=10.14.167.75']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [result]
     entrypoint : gcloud
-    args : ['run', 'deploy', 'result-mick-tp', '--image', 'gcr.io/projet-group-a/mick-result:latest', '--region', 'europe-west1', '--port', '4000', '--allow-unauthenticated']
+    args : ['run', 'deploy', 'result-mick-tp', '--image', 'gcr.io/projet-group-a/mick-result:latest', '--region', 'europe-west1', '--port', '4000', '--allow-unauthenticated', '--set-env-vars','SERVER_POSTGRES=35.225.51.130, USER_POSTGRES=postgres, PASSWORD_POSTGRES=postgres, DATABASE_POSTGRES=id1']
 
 
 images: [gcr.io/projet-group-a/mick-vote:latest,gcr.io/projet-group-a/mick-worker:latest,gcr.io/projet-group-a/mick-result:latest,gcr.io/projet-group-a/mick-redis:latest,gcr.io/projet-group-a/mick-postgres:latest]
