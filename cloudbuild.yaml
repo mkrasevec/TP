@@ -16,7 +16,7 @@ steps:
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [worker]
     entrypoint : gcloud
-    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-worker:latest', '--region', 'europe-west1', 'allow-unauthenticated']
+    args : ['run', 'deploy', 'test-flask-hello-ci-cd', '--image', 'gcr.io/projet-group-a/mick-worker:latest', '--region', 'europe-west1', '--allow-unauthenticated']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     waitFor: [vote]
     entrypoint : gcloud
